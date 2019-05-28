@@ -49,6 +49,7 @@ namespace MVC2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FormID,FormNo,Subject")] FormBoard formBoard)
         {
+
             if (ModelState.IsValid)
             {
                 db.Students.Add(formBoard);

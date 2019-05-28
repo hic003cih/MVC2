@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MVC2.ViewModels.Group>
+           
+@{
+    ViewBag.Title = "Student Body Statistics";
+}
+
+<h2>Student Body Statistics</h2>
+
+<table>
+    <tr>
+        <th>
+            Enrollment Date
+        </th>
+        <th>
+            Students
+        </th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @item.ScoreCount
+            </td>
+        </tr>
+    }
+</table>
