@@ -11,6 +11,7 @@ using MVC2.DAL;
 using MVC2.Models;
 using MVC2.ViewModels;
 using PagedList;
+using System.Data.Entity.Infrastructure;
 
 namespace MVC2.Controllers
 {

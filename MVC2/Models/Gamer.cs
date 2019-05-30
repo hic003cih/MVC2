@@ -14,6 +14,7 @@ namespace MVC2.Models
         public string Gender { get; set; }
         public int Score { get; set; }
         public int GameMoney { get; set; }
+        public int Age { get; set; }
 
         public Gamer()
         {
@@ -22,6 +23,7 @@ namespace MVC2.Models
             Gender = string.Empty;
             Score = 0;
             GameMoney = 0;
+            Age = 0;
         }
 
         //public Gamer(int _id, string _name, string _score)
