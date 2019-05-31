@@ -25,6 +25,8 @@ namespace MVC2.Migrations
                 new Gamer { Id = 1,Name = "Carson",   Gender = "Male",
                     Score = 501,GameMoney=502,Age = 18},
                 new Gamer { Id = 2,Name = "Ca",   Gender = "Male",
+                    Score = 100,GameMoney=2,Age = 60},
+                new Gamer { Id = 3,Name = "6666", Gender = "Male",
                     Score = 100,GameMoney=2,Age = 60}
             };
             students.ForEach(s => context.Gamers.AddOrUpdate(p => p.Id, s));

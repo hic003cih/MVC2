@@ -133,6 +133,7 @@
     <Compile Include="Controllers\FormBoardsController.cs" />
     <Compile Include="Controllers\GamersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\GetVillageList.cs" />
     <Compile Include="DAL\OnlineGameContext.cs" />
     <Compile Include="DAL\SchoolContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -141,6 +142,10 @@
     <Compile Include="Migrations\201905300249055_InitialCreate.cs" />
     <Compile Include="Migrations\201905300249055_InitialCreate.Designer.cs">
       <DependentUpon>201905300249055_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905310308241_InitialCreate1.cs" />
+    <Compile Include="Migrations\201905310308241_InitialCreate1.Designer.cs">
+      <DependentUpon>201905310308241_InitialCreate1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FormBoard.cs" />
@@ -219,6 +224,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905300249055_InitialCreate.resx">
       <DependentUpon>201905300249055_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905310308241_InitialCreate1.resx">
+      <DependentUpon>201905310308241_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

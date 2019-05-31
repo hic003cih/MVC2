@@ -53,6 +53,9 @@
             @*@Html.ActionLink("GameMoney", "Index", new { sortOrder = ViewBag.DateSortParm })*@
             @Html.ActionLink("GameMoney", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
+        <th>
+            Date
+        </th>
         <th></th>
     </tr>
 
@@ -71,6 +74,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.GameMoney)
             </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.RegisteredDate)
+            </th>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |

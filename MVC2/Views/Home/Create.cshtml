@@ -38,9 +38,11 @@
     ViewBag.Title = "Home Page";
     //Layout = null;
 
-    var date = ViewBag.Date;
-    var student = ViewBag.Student;
-    var list = ViewBag.List;
+    //var date = ViewBag.Date;
+    //var student = ViewBag.Student;
+    //var list = ViewBag.List;
+
+    var cityList = ViewBag.CityList;
 }
 
 @*@model MVC2.Models.Student*@
@@ -48,7 +50,8 @@
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 
-<form style="margin-left:10px;" method="get" action="/Home/Transcripts">
+<form style="margin-left: 10px;" method="get" action="/Home/Transcripts">
+    <h1>Get</h1>
     <div class="form-group">
         <label for="exampleInputEmail1">學號</label>
         <input type="text" class="form-control" id="id" name="id" aria-describedby="emailHelp" placeholder="Enter email" value="@Model.id">
@@ -65,7 +68,9 @@
     <button type="submit" class="btn btn-primary">確定</button>
 </form>
 
-<form style="margin-left:10px;" method="post" action="/Home/Transcripts">
+<form style="margin-left: 10px;" method="post" action="/Home/Transcripts">
+    <h1>Post</h1>
+    <h2>@ViewBag.Date</h2>
     <div class="form-group">
         <label for="exampleInputEmail1">學號</label>
         <input type="text" class="form-control" id="id" name="id" aria-describedby="emailHelp" placeholder="Enter email" value="@Model.id">
@@ -79,5 +84,51 @@
         <label for="exampleInputEmail1">分數</label>
         <input type="text" class="form-control" id="score" name="score" aria-describedby="emailHelp" placeholder="Enter email" value="@Model.score">
     </div>
+    <div class="form-group">
+        <label for="Address">地址</label>
+        <select id="city" name="city">
+            <option value="">全部</option>
+            @for (int i = 0; i < cityList.Count; i++)
+            {
+                <option value="@cityList[i].Id">@cityList[i].Name</option>
+            }
+        </select>
+        <select id="village" name="village">
+            <option value="">請選擇縣市</option>
+        </select>
+        <input type="text" class="form-control" id="Address" name="address" placeholder="輸入地址" value="">
+    </div>
     <button type="submit" class="btn btn-primary">確定</button>
 </form>
+
+<script>
+    $("#city").change(function () {
+        var value = $("#city").val();
+        console.log(value);
+        $.ajax({
+            type: "Post",
+            url: "../Home/Village?id=" + value,
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $("#village").empty();
+                if (data == "") {
+                    $("#village").append("<option value=''>請選擇縣市</option>");
+                }
+                else {
+                    var jo = JSON.parse(data);
+                    $("#village").append("<option value=''>請選擇</option>");
+                    for (i = 0; i < jo.length; i++) {
+                        $("#village").append("<option value='" + jo[i].VillageId + "'>" + jo[i].VillageName + "</option>");
+                    }
+                }
+            },
+            failure: function (errMsg) {
+                $("#village").empty();
+                $("#village").append("<option value=''>請選擇縣市</option>");
+            }
+        })
+    });
+</script>

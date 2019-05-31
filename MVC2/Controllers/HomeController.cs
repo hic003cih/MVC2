@@ -6,17 +6,23 @@ using System.Web.Mvc;
 using MVC2.Models;
 using System.Web.Configuration;
 using System.Web.UI.WebControls;
+using MVC2.DAL;
 
 namespace MVC2.Controllers
 {
     public class HomeController : Controller
     {
+        private OnlineGameContext db = new OnlineGameContext();
 
         public ActionResult Index()
         {
             DateTime date = DateTime.Now;
             Student data = new Student();
             List<Student> list = new List<Student>();
+
+            
+
+
             list.Add(new Student("1", "小明", 80));
             list.Add(new Student("2", "小華", 70));
             list.Add(new Student("3", "小英", 60));
@@ -26,6 +32,8 @@ namespace MVC2.Controllers
             ViewBag.Date = date;
             ViewBag.Student = data;
             ViewBag.List = list;
+            
+
             return View();
         }
 
@@ -48,6 +56,9 @@ namespace MVC2.Controllers
         {
             DateTime date = DateTime.Now;
             ViewBag.Date = date;
+
+            List<Gamer> cityList = db.Gamers.ToList();
+            ViewBag.CityList = cityList;
 
             Student data = new Student("5", "小明", 80);
             return View(data);
@@ -79,6 +90,23 @@ namespace MVC2.Controllers
             int score = model.score;
             Student data = new Student(id, name, score);
             return View(data);
+        }
+
+        [HttpPost]
+        public ActionResult Village(string id = "")
+        {
+            List<Village> list = db.GetVillageList(id);
+            string result = "";
+            if (list == null)
+            {
+                //讀取資料庫錯誤
+                return Json(result);
+            }
+            else
+            {
+                result = JsonConvert.SerializeObject(list);
+                return Json(result);
+            }
         }
     }
 }
