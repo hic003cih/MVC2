@@ -7,6 +7,7 @@ using MVC2.Models;
 using System.Web.Configuration;
 using System.Web.UI.WebControls;
 using MVC2.DAL;
+using Newtonsoft.Json;
 
 namespace MVC2.Controllers
 {
@@ -95,7 +96,8 @@ namespace MVC2.Controllers
         [HttpPost]
         public ActionResult Village(string id = "")
         {
-            List<Village> list = db.GetVillageList(id);
+            GetVillageList getData = new GetVillageList();
+            List<Gamer> list = getData.GetList(id);
             string result = "";
             if (list == null)
             {

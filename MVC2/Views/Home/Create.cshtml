@@ -101,6 +101,7 @@
     <button type="submit" class="btn btn-primary">確定</button>
 </form>
 
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script>
     $("#city").change(function () {
         var value = $("#city").val();
@@ -121,7 +122,7 @@
                     var jo = JSON.parse(data);
                     $("#village").append("<option value=''>請選擇</option>");
                     for (i = 0; i < jo.length; i++) {
-                        $("#village").append("<option value='" + jo[i].VillageId + "'>" + jo[i].VillageName + "</option>");
+                        $("#village").append("<option value='" + jo[i].Id + "'>" + jo[i].Name + "</option>");
                     }
                 }
             },
